@@ -1,0 +1,354 @@
+html,body{
+    background-color:rgb(255, 255, 255);
+    /* height: 100vh; */
+    height:100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.choose_study select{
+    overflow:hidden;
+    text-overflow: ellipsis;
+    width:100%;
+}
+.choose_study option{
+    text-overflow: ellipsis;
+    width:100px;
+}
+/* login page */
+.top{
+    background-color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    text-align: center;
+    width: auto;
+    height: 30%;
+    font-size: 24px;
+    line-height: 75%;
+    font-weight: 700;
+    margin: 0;
+}
+
+.left,.right{
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    background-color: #ecf9b0;
+    font-family: sans-serif;
+    text-align: center;
+    width: 17.22%;
+    height: 100vh;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.content{
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    text-align: center;
+    width: 65.56%;
+    height: 100%;
+    font-size: 15px;
+    padding: 10%;
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.content .col{
+    font-size: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 10%;
+}
+.bottom{
+    background-color: rgb(252, 81, 2);
+    width: 100%;
+    height: 10%;
+    float: top;
+}
+
+.header {
+    height: 100vh;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow-y: auto;
+}
+.header2{
+    height: 100%;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+/* home page */
+.overlay {
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    overflow-y:auto;
+    height: 100vh;
+}
+.overlay2 {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+/* .container{
+    height: 100%;
+} */
+.home-content {
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:relative;
+	top: 0%;
+	text-align: center;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+.home-content h2 {
+	color: #edf1b2;
+}
+.home-content p {
+	color: #fff;
+	font-size: 1.3rem;
+	line-height: 1.5;
+}
+.home-content #TableContent{
+    width: 100%;
+    font-size: 30px;
+    background-color: #edf1b2;
+    height: 100%;
+    overflow: auto;
+}
+.data-table {
+    font-size: 20px;
+    width: 100%;
+    table-layout: fixed;
+}
+/* table */
+.data-table th,
+.data-table td {
+    padding: 8px 12px; /* Adjust padding for better readability */
+    text-align: center; /* Align text within cells */
+}
+
+
+/* Adjust font size for smaller screens */
+@media (max-width: 760px) {
+    .data-table {
+        font-size: 20px;
+    }
+    /* table */
+    .data-table th,
+    .data-table td {
+        padding: 8px 12px; /* Adjust padding for better readability */
+        text-align: center; /* Align text within cells */
+    }
+
+    .data-table th:nth-child(1), /* First column */
+    .data-table td:nth-child(1) {
+        width: 10%; /* Set the width of the first column */
+    }
+
+    .data-table th:nth-child(2), /* Second column */
+    .data-table td:nth-child(2) {
+        width: 10%; /* Set the width of the second column */
+    }
+
+    .data-table th:nth-child(3), /* Second column */
+    .data-table td:nth-child(3) {
+        width: 10%; /* Set the width of the second column */
+    }
+
+    .data-table th:nth-child(4), /* Second column */
+    .data-table td:nth-child(4) {
+        width: 10%; /* Set the width of the second column */
+    }
+    .search-input {
+        width: 50%; /* Adjust the width as needed */
+    }
+}
+
+/* Adjust font size for even smaller screens */
+@media (max-width: 480px) {
+    .data-table {
+        font-size: 12px;
+    }
+    .data-table th,
+    .data-table td {
+        width: 0; /* Reset to auto width for better responsiveness */
+    }
+    .search-input {
+        width: 20%; /* Adjust the width as needed */
+    }
+}
+
+/* home drop down */
+.dropdown-menu#studies{
+    max-height:200px;
+    overflow:auto;
+}
+.dropdown-menu {
+    width: 100%; /* Set width to 100% of the parent (select button) */
+}
+.dropdown-menu#studies.dropdown-item{
+    font-size: 10px;
+}
+.dropdown#projcts{
+    position:relative;
+}
+.responsive-width {
+    font-size: 2.5vw;
+}
+.scrollable-row {
+    height: 100vh;
+    /* Set a maximum height for the visible area */
+    overflow: hidden;   /* Add scroll bar when content exceeds max height */
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    /* padding: 10px; Add padding for spacing within the scrollable area */
+}
+
+.search-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selected-row {
+    background-color: #f2f2f2; /* Or any other color you prefer */
+}
+.search-input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Navigation bar */
+.navbar {
+    background:#4484ce;
+    padding: 0px;
+}
+.nav-link,.dropdown-item
+.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+}
+.nav-link{
+    margin-right: 1em !important;
+}
+.nav-link:hover{
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.nav-item-dropdown{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+/* footer */
+.page-footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 60px 0 30px;
+}
+.footer-copyright {
+    color: #666;
+    padding: 40px 0;
+}
+
+.report-section {
+    margin-bottom: 10px 0; /* Add some margin between sections */
+}
+
+.report-section h2 {
+    text-align: center; /* Center section title */
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Center text horizontally */
+    padding: 20px; /* Add padding for spacing */
+    max-width: 600px; /* Set a maximum width for content */
+    margin: 0 auto; /* Center content horizontally */
+    background-color: #fff; /* Set background color for sections */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow for a paper-like appearance */
+}
+.report-rows {
+    border-collapse: collapse; /* Collapse the borders */
+    width: 100%; /* Set the table width to 100% */
+    margin: 20px 0; /* Add some margin between sections */
+}
+
+.report-rows td {
+    border: 1px solid #000; /* Add a border to table cells */
+    padding: 8px; /* Add padding for spacing */
+}
+
+
+.table-container{
+    margin-top: 10px; /* Adjust the top margin to provide space for the fixed search container */
+    /* Set a maximum height for the table container */
+    max-height: calc(100vh - 50px); /* Subtract the height of the fixed search container */
+    align-items: center;
+}
+
+.button-container {
+    position: sticky;
+    background-color: #edf1b2; /* Set your desired background color */
+    z-index: 1; /* Ensure it's above the table */
+}
+
+
+/* Make thead sticky */
+.data-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #edf1b2; /* Set background color as needed */
+    z-index: 1; /* Ensure it's above the table body */
+}
+
+/* Adjust the table container to leave space for the fixed-search-container */
+.combined-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.fixed-search-container {
+    flex: 0 0 auto;
+}
+.report-container{
+    width: 33.33%; /* Set the width to 33.33% to display three tables side by side */
+    float: left;   /* Float the containers to the left to make them display horizontally */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    padding: 0px; /* Add some padding to create space between the tables */
+}
+
+

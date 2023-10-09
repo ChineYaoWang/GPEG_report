@@ -1,0 +1,6 @@
+username,email,fname,lname,status,type,type_id
+admin,admin@localhost,Administrator,Admin,active,admin,0
+wangchienyao,Chienyao.Wang@nyspi.columbia.edu,Chien-Yao,Wang,active,admin,0
+musag,musag@nyspi.columbia.edu,George,Musa,active,admin,0
+wowjw,wowjw2011@gmail.com,CHIEN-YAO,WANG,active,admin,0
+wwww,www@gmail.com,ww,www,active,admin,0
