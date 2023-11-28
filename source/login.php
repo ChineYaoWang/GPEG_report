@@ -20,9 +20,6 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-expand-xl">
         <b class="navbar-brand" >Global Psychiatric Epidemiology Group </b>
-        <!-- <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
     </nav>
 
     <header>

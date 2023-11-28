@@ -19,7 +19,7 @@ $sql = "SELECT  `redcap_token` from `$token_table`
             $check = true;
             $message = $row[0];
         }
-        
+        // Check if token is found
         if(!$check) $message = "Token not found";
         else{
             // store token 

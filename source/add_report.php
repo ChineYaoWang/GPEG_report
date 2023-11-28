@@ -46,6 +46,7 @@ include 'config.php';
 			<li class="nav-item">
 				<a class="nav-link" href="#">About</a>
 			</li>
+            <!-- If the user's type_id is 0 (admin), it has permission to edit user,study,project, and report -->
             <?php
                 if($_SESSION['type_id'] == '0'){
                     echo '<div class="nav-item-dropdown">
@@ -61,6 +62,7 @@ include 'config.php';
                     </div>';
                 }
             ?>
+             <!-- Some funcitonal button -->
             <div class="nav-item-dropdown">
                 <li class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Setting
                 <span class="caret"></span>
@@ -161,13 +163,14 @@ include 'config.php';
                 <div class = "container">
                     <div class="d-flex justify-content-center mb-1 mb-lg-4">
                         <div class="row">
+                            <!-- Reset study & project or report -->
                             <div class="col-sm-12 col-lg-12">
                                 <p id = "show_sp"><span onclick='show_reset_sp()' style="cursor: pointer; color:blue">Reset report's Study and Project</span></p>
                             </div>
                             <div class="col-sm-12 col-lg-12">
                                 <p id = "show_report"><span onclick='show_reset_report()' style="cursor: pointer; color:blue">Reset Report Name</span></p>
                             </div>
-                            <!-- report to be updated-->
+                            <!-- Peport to be updated-->
                             <div class ="col-xl-12 col-lg-12 col-md-12 col-sm-12" id = "report">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
@@ -187,6 +190,7 @@ include 'config.php';
                                     </div>
                                 </div>
                             </div>
+                            <!-- Reset study and project -->
                             <div class="col-sm-12 col-lg-12 col-xl-12" id = "sp">
                                 <!-- Study -->
                                 <div class ="col-xl-12 col-lg-12 col-md-12 col-sm-12 h-25">
@@ -197,6 +201,7 @@ include 'config.php';
                                                 <select data-display="static" id= "study" name="study"  class="select form form-control" aria-label="label for the select" ></select>
                                                 <div class=" dropdown-menu dropdown-menu-right responsive-width" id = "studies">
                                                     <script type = "text/javascript">
+                                                        // Extract all the studies and projects and store in obj, then show 
                                                         $.ajax({
                                                             type:"GET",
                                                             url:"fetch_study.php",
@@ -204,8 +209,12 @@ include 'config.php';
                                                             success:function(data){
                                                                 html = "<option selected>--Select New Study--</option>\n";
                                                                 var obj = JSON.parse(data);
+                                                                // Since we query project table, studyname might duplicate
+                                                                // "Set" prevents from duplication
                                                                 var set = new Set();
+                                                                // Show all the studies
                                                                 for(var i = 0; i < obj.length; i++) {
+                                                                    //obj[i][0] : projectname, obj[i][1] : studyname
                                                                     if(!set.has(obj[i][1])){
                                                                         set.add(obj[i][1]);
                                                                         html += "<option value=" + "\"" + obj[i][1] + "\"" + ">" +obj[i][1] + "</option>\n";
@@ -229,6 +238,7 @@ include 'config.php';
                                                 <select data-display="static" id= "project" name="project" class="select form form-control" aria-label="label for the select" ></select>
                                                 <div class=" dropdown-menu dropdown-menu-right responsive-width" id = "projects">
                                                     <script type = "text/javascript">
+                                                        // Extract all the studies and projects and store in obj, then show 
                                                         $.ajax({
                                                             type:"GET",
                                                             url:"fetch_study.php",
@@ -238,8 +248,10 @@ include 'config.php';
                                                                 $("#study").change(function(){
                                                                     html = "<option selected>--Select New Project--</option>";
                                                                     var chosen_study = document.getElementById("study");
+                                                                    // study we chose
                                                                     var text = chosen_study.options[chosen_study.selectedIndex].text;
                                                                     for(var i = 0; i < obj.length; i++) {
+                                                                        // Show all project that match the study we chose
                                                                         if( obj[i][1] == text){
                                                                             html += "<option value=" + "\"" + obj[i][0] + "\"" +">"+obj[i][0] + "</option>";
                                                                         }
@@ -256,14 +268,16 @@ include 'config.php';
                                     </div>
                                 </div>
                             </div>
-                            
+                            <!-- Reset report -->
                             <div class="col-sm-12 col-lg-12 col-xl-12" id = "rn">
+                                <!-- New Report ID -->
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="text" id="new_report_id" name="new_report_id" placeholder="New Report ID" class="form-control"/>
                                     </div>
                                 </div>
+                                <!-- New Report Name -->
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
@@ -289,6 +303,7 @@ include 'config.php';
 </header>
 <script type="text/javascript" src="scripts.js"></script>
 <script type="text/javascript">
+// sp->study&project, rn-> report name
 $(document).ready(function() {
     document.getElementById ("show_sp").addEventListener ("click", show_reset_sp(), false);
     document.getElementById ("show_report").addEventListener ("click", show_reset_report(), false);

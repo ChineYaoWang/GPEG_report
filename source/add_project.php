@@ -46,6 +46,7 @@ include 'config.php';
 			<li class="nav-item">
 				<a class="nav-link" href="#">About</a>
 			</li>
+      <!-- If the user's type_id is 0 (admin), it has permission to edit user,study,project, and report -->
             <?php
                 if($_SESSION['type_id'] == '0'){
                     echo '<div class="nav-item-dropdown">
@@ -61,6 +62,7 @@ include 'config.php';
                     </div>';
                 }
             ?>
+            <!-- Some funcitonal button -->
             <div class="nav-item-dropdown">
                 <li class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Setting
                 <span class="caret"></span>
@@ -76,7 +78,7 @@ include 'config.php';
 	</div>
 </nav>
 
-<!-- <section class="vh-auto" style="background-image: url('assets/images/background_photo.jpg');"> -->
+
 <header class="page-header header container-fluid" style="background-image: url('assets/images/background_photo.jpg');">
   <div class="container h-auto" style="min-height: 100vh;">
     <div class="overlay">
@@ -91,6 +93,7 @@ include 'config.php';
                   <h2 id = "title"> ADD</h2>
                   <button class=" h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 btn-lg btn-primary" onclick="SwitchFunction_pjt()">Add/Edit Project</button>
                 <div>
+                <!-- Add project to project table -->
                 <form autocomplete="off" id ="add-project" class="mx-1 mx-md-4" action = "connect.php" method = "POST">
 
                     <!-- Project ID -->
@@ -130,11 +133,11 @@ include 'config.php';
                   </div>
                 </form>
 
-
+                <!-- Edit project table-->
                 <form autocomplete="off" id ="edit-project" class="mx-1 mx-md-4" action = "connect.php" method = "POST">
                   <div class = "container">
-                    <!-- <div class="d-flex justify-content-center mb-1 mb-lg-4"> -->
                       <div class="row">
+                        <!--Reset study or project -->
                         <div class="col-sm-12 col-lg-12 col-xl-6">
                             <p id = "show_std"><span onclick='show_reset_std()' style="cursor: pointer; color:blue">Reset StudyName</span></p>
                         </div>
@@ -198,7 +201,6 @@ include 'config.php';
                           </div>
                         </div>
                       </div>
-                    <!-- </div> -->
                   </div>
                 </form>
               </div>
@@ -213,7 +215,7 @@ include 'config.php';
 
 <script type="text/javascript">
 $(document).ready(function() {
-
+    // pjt-> reset project, std->reset study
     document.getElementById ("show_pjt").addEventListener ("click", show_reset_pjt(), false);
     document.getElementById ("show_std").addEventListener ("click", show_reset_std(), false);
     $("#edit-project").hide();

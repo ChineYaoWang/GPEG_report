@@ -197,6 +197,7 @@ function RPT_SW($rpt_content,$selected_id){
         // Iterate through all rows
         foreach($content as $row){
             if($row['record_id'] == $selected_id){
+                $count_email = 0;
                 // Check if row has $repeat_instance
                 $repeat_instance = false;
                 // concatenate repeat instance data
@@ -206,15 +207,15 @@ function RPT_SW($rpt_content,$selected_id){
                     // Check if repeat_instance exist in this row
                     if($key == 'redcap_repeat_instance' && !isEmpty($val)) $repeat_instance = true;
                     $contain_rec = str_contains($key, 'rec_new');
-
+                    
                     if(!isEmpty($val) && $key != 'record_id' && $key != 'redcap_event_name' && $key != 'redcap_repeat_instance'){
                         $s = cleanup_numbers($key);
-                        if($repeat_instance){
+                        if($repeat_instance && $contain_rec){
                             $concatenate_repeat_instance.=(", ".$val);
+                            $count_email++;
                         }
                         else{
                             if(!key_exists($s, $repeat)){
-                                // echo $s,":";
                                 $array[$s] = array();
                                 array_push($array[$s],$val);
                                 $repeat[$s] = 1;
@@ -237,15 +238,34 @@ function RPT_SW($rpt_content,$selected_id){
                         $array['Recruitment'] = array();
                         $repeat['Recruitment'] = 1;
                     }
-                    array_push($array['Recruitment'],ltrim($concatenate_repeat_instance, ', '));
+                    // store email individually
+                    if($contentName == 'RPT_Emails'){
+                        $concatenate_repeat_instance = ltrim($concatenate_repeat_instance, ', ');
+                        $email_array = explode(", ", $concatenate_repeat_instance);
+                        foreach($email_array as $email){
+                            array_push($array['Recruitment'],$email);
+                        }
+                    }
+                    else array_push($array['Recruitment'],ltrim($concatenate_repeat_instance, ', '));
                 }
             }
         }
         if(key_exists('Recruitment', $repeat)){
-            end($array['Recruitment']);
             // Update the value of the last element (latest recruitment)
-            $index = key($array['Recruitment']); // Get the key/index of the last element
-            $array['Recruitment'][$index].=" (current)";
+            // Might have mutiple current emails
+            if($contentName == 'RPT_Emails'){
+                $sz = count($array['Recruitment']);
+                for ($i = $sz-1; $i >= $sz-$count_email; $i--) {
+                    $array['Recruitment'][$i].=" (current)";
+                }
+                
+            }
+            else{
+                // Get the key/index of the last element
+                end($array['Recruitment']);
+                $index = key($array['Recruitment']); 
+                $array['Recruitment'][$index].=" (current)";  
+            }         
         }
         // add the content into result
         $result[$contentName] = $array;

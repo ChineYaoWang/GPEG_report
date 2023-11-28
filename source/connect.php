@@ -1,7 +1,7 @@
 <?php
 include 'session_check.php';
 require_once "config.php";
-
+// Add user
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_register"])) {
 
     // collect value of input field
@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_register"])) {
     echo "<script type='text/javascript'>alert('$message');window.location.href='add_user.php';</script>";
     $conn->close();
 }
+// edit user
 else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_register"])) {
 
     // collect value of input field
@@ -105,6 +106,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_register"])) 
     echo "<script type='text/javascript'>alert('$message');window.location.href='add_user.php';</script>";
     $conn->close();
 }
+// Add study
 elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_study"])) {
     $study_id = $_POST['study_id'];
     $studyname = $_POST['study_name'];
@@ -143,6 +145,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_study"])) {
     echo "<script type='text/javascript'>alert('$message');window.location.href='add_study.php'; </script>";
     $conn->close();
 }
+// edit study
 elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_study"])) {
     $old_studyname =$_POST['old_name'];
     $studyname = $_POST['study_name'];
@@ -178,6 +181,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_study"])) {
     echo "<script type='text/javascript'>alert('$message');window.location.href='add_study.php';</script>";
     $conn->close();
 }
+// Add project
 elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_project"])) {
     $project_id = $_POST['project_id'];
     $study_name = $_POST['study_name'];
@@ -231,6 +235,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_project"]))
     echo "<script type='text/javascript'>alert('$message'); window.location.href='add_project.php';</script>";
     $conn->close();
 }
+// Edit project
 else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_project"])) {
     // collect value of input field
     $projectname = $_POST['projectname'];
@@ -282,6 +287,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_project"])) {
     echo "<script type='text/javascript'>alert('$message');window.location.href='add_project.php';</script>";
     $conn->close();
 }
+// check if token exist
 else if(isset($_GET["get_token_btn"])) {
     $project_name = $_GET['project_button'];
     $study_name = $_GET['study_button'];
@@ -310,6 +316,7 @@ else if(isset($_GET["get_token_btn"])) {
         $json_message = json_encode($message);
         echo $json_message;
 }
+// add report
 else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_report"])) {
     $report_id = $_POST['report_name_id'];;
     $studyname = $_POST['study_button'];
@@ -346,6 +353,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_report"]))
     $conn->close();
     
 }
+// Edit report
 else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_report"])) {
     $reportname = $_POST['report_name_r'];
     $report_id = $_POST['new_report_id'];
@@ -414,17 +422,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_report"])) {
 else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["record_id"])){
     $select=[];
     $selected_id;
-    // echo "Header: ";
     // Iterate through form fields
     foreach ($_POST as $fieldName => $fieldValue) {
         // Check if the field name matches a pattern (e.g., "fieldX")
         if($fieldName=='record_id')  $selected_id = $fieldValue;
         $select[$fieldName] = array($fieldValue);
-        // echo $fieldName," ",$fieldValue," ";
     }
     $result["Header"] = $select;
-    // echo "<br>";
-    // echo "<br>";
     $result;
     $rpt_content = $_SESSION['all_content'];
     if($_SESSION['study'] == "Stress&Well-Being"){

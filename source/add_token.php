@@ -22,7 +22,7 @@ VALUES (2,
     else{
         $message = $conn->error;
     }
+
     // $json_message = json_encode($message);
-    $json_message = json_encode($message);
     echo $json_message;
     ?>

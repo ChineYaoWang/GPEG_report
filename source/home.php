@@ -32,7 +32,7 @@ global $row;
 			<li class="nav-item">
 				<a class="nav-link" href="#">About</a>
 			</li>
-          
+            <!-- If the user's type_id is 0 (admin), it has permission to edit user,study,project, and report -->
             <?php
                 if($_SESSION['type_id'] == '0'){
                     echo '<div class="nav-item-dropdown">
@@ -48,7 +48,7 @@ global $row;
                     </div>';
                 }
             ?>
-           
+            <!-- Some funcitonal button -->
             <div class="nav-item-dropdown">
                 <li class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Setting
                 <span class="caret"></span>

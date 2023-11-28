@@ -68,7 +68,7 @@ $(document).ready(function(){
 
     $("#project_button").hide();
     $("#no_token").hide();
-    // $('.header').height($(window).height());
+
 
     $("#study_button").change(function(){
         if(this.value == '--Select Study--'){
@@ -99,7 +99,7 @@ $(document).ready(function(){
                             $("#no_token").show();
                         }
                         else{
-                            $('#token_result').html("Redircting.....Please Wait");
+                            $('#token_result').html("Redirecting.....Please Wait");
                             // fetch the content
                             var data_check = {'rpt_content':true};
                             $.ajax({
@@ -142,6 +142,7 @@ $(document).ready(function(){
     });
 
 });
+// Check if comfirm password and password match
 function CheckPassword(){
     let message = document.getElementById("message").innerText;
     let message2 = document.getElementById("message2").innerText;
@@ -166,7 +167,7 @@ function CheckPassword(){
         }
     }
 }
-
+// toggle between edit user page and add user page
 function SwitchFunction_usr(){
     $("#add-usr").toggle();
     document.getElementById("add-usr").reset();
@@ -181,7 +182,7 @@ function SwitchFunction_usr(){
    
     console.log(document.getElementById("title").innerText);
 }
-
+// toggle between edit study page and add study page
 function SwitchFunction_std(){
     $("#add-study").toggle();
     document.getElementById("add-study").reset();
@@ -196,6 +197,7 @@ function SwitchFunction_std(){
    
     console.log(document.getElementById("title").innerText);
 }
+// toggle between edit project page and add project page
 function SwitchFunction_pjt(){
     $("#add-project").toggle();
     document.getElementById("add-project").reset();
@@ -212,8 +214,8 @@ function SwitchFunction_pjt(){
    
     console.log(document.getElementById("title").innerText);
 }
+// toggle between edit report page and add report page
 function SwitchFunction_report(){
-
     if(document.getElementById('add-report')){
         if (document.getElementById('edit-report').style.display == 'none') {
             document.getElementById('edit-report').style.display = 'block';
@@ -237,12 +239,14 @@ function SwitchFunction_report(){
    
     console.log(document.getElementById("title").innerText);
 }
+// show study&projectpage and hide reportname page
 function show_reset_sp(){
     $("#report").show();
     $("#sp").show();
     $("#rn").hide();
     document.getElementById("edit-report").reset();
 }
+// hide study&projectpage and show reportname page
 function show_reset_report(){
     $("#report").show();
     $("#sp").hide();
@@ -267,15 +271,15 @@ function display_RPT_Header(data) {
     form.action = 'connect.php'; // Specify the server endpoint to receive the data
     
     // Add submit button
-    const buttoneContainer = document.createElement('div');
-    buttoneContainer.classList.add('button-container');
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
 
     const submitButton = document.createElement('button');
     submitButton.textContent = 'Submit';
     submitButton.id = 'submit-button'; // Set the id attribute
     submitButton.style.fontSize = '14px'; // Adjust the font size as needed
 
-    buttoneContainer.appendChild(submitButton);
+    buttonContainer.appendChild(submitButton);
 
 
     const formContainer = document.getElementById('home');
@@ -382,12 +386,12 @@ function display_RPT_Header(data) {
     // Append the searchDiv to a fixcontainer
     fixcontainer.appendChild(searchDiv);
     // Append the button to a fixcontainer
-    fixcontainer.appendChild(buttoneContainer);
+    fixcontainer.appendChild(buttonContainer);
+    
 
     // Append the table to the TableContent div
     TableContent.innerHTML = ''; // Clear existing content
-    // Append the fixcontainer to a container in the DOM
-    // TableContent.appendChild(fixcontainer)
+
 
     // Create a div for table
     const tableContainer = document.createElement('div');
@@ -396,19 +400,14 @@ function display_RPT_Header(data) {
     tableContainer.appendChild(table);
 
 
-    const combinedContainer = document.createElement('div');
-    combinedContainer.classList.add('combined-container');
-    combinedContainer.appendChild(fixcontainer)
-    combinedContainer.appendChild(tableContainer);
+    // Append searching bar and table to content
+    TableContent.appendChild(fixcontainer);
+    TableContent.appendChild(tableContainer);
 
-    TableContent.appendChild(combinedContainer);
-
-    // TableContent.appendChild(tableContainer);
-    // Listen for form submission and reset the flag when done
-    // form.addEventListener('submit', () => {
-    //     isFormSubmitting = false;
-    // });
-
+    // Set the position of header based on the height of fix container
+    const totalHeight = fixcontainer.offsetHeight;
+    tableHeader.style.top = `${totalHeight}px`;
+    
     // Function to filter the table based on search input and selected column
     function filterTable(query, selectedColumn) {
         const columnIndex = headers.indexOf(selectedColumn);

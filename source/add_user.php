@@ -46,6 +46,7 @@ include 'config.php';
 			<li class="nav-item">
 				<a class="nav-link" href="#">About</a>
 			</li>
+            <!-- If the user's type_id is 0 (admin), it has permission to edit user,study,project, and report -->
             <?php
                 if($_SESSION['type_id'] == '0'){
                     echo '<div class="nav-item-dropdown">
@@ -61,6 +62,7 @@ include 'config.php';
                     </div>';
                 }
             ?>
+            <!-- Some funcitonal button -->
             <div class="nav-item-dropdown">
                 <li class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Setting
                 <span class="caret"></span>
@@ -76,7 +78,6 @@ include 'config.php';
 	</div>
 </nav>
 
-<!-- <section class="vh-auto" style="background-image: url('assets/images/background_photo.jpg');"> -->
 <header class="page-header header container-fluid h-auto" style="background-image: url('assets/images/background_photo.jpg');">
   <div class="container h-auto" style="min-height: 100vh;" >
     <div class="overlay">
@@ -94,6 +95,8 @@ include 'config.php';
                   <h2 id = "title"> ADD</h2>
                   <button class=" h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 btn-lg btn-primary" onclick="SwitchFunction_usr()">Add/Edit User</button>
                 <div>
+                    
+                <!-- Add User -->
                 <form id ="add-usr" onsubmit="return CheckPassword()" class="mx-1 mx-md-4" action = "connect.php" method = "POST">
                 <div class = "container">
                     <div class = "row d-flex">
@@ -157,7 +160,6 @@ include 'config.php';
                                         <option value="expired">Expired</option>
                                     </select>
                                     <br>
-                                    <!-- <label class="form-label" for="form3Example4c">Status</label> -->
                                 </div>
                             </div>
                         </div>
@@ -177,7 +179,6 @@ include 'config.php';
                                         <option value="analyst">Analyst</option>
                                     </select>
                                     <br>
-                                    <!-- <label class="form-label" for="form3Example4c">Type</label> -->
                                 </div>
                             </div>
                         </div>
@@ -189,7 +190,7 @@ include 'config.php';
                     
                 </div>
                 </form>
-
+                <!-- Edit user -->
                 <form id ="edit-usr" autocomplete="off" onsubmit="return CheckPassword()" class="mx-1 mx-md-4" action = "connect.php" method = "POST">
                 <div class = "container">
                     <div class="d-flex justify-content-center mb-1 mb-lg-4">
@@ -201,12 +202,14 @@ include 'config.php';
                             <div class="col-sm-12 col-lg-12">
                                 <p id = "show_ps"><span onclick='show_reset_ps()' style="cursor: pointer; color:blue">Reset Password</span></p>
                             </div>
+                            <!-- Reset Config -->
                             <div class="col-sm-12 col-lg-12 col-xl-12" id = "cfg">
                                 <div class ="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <!-- User to be updated-->
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
+                                            <!-- Select username  -->
                                             <select  id="usr" name="usr" class="select form form-control" aria-label="label for the select" style="overflow: hidden;">
                                                 <option selected>--Please select username--</option>
                                                 <?php
@@ -257,11 +260,13 @@ include 'config.php';
                                 </div>
                                 </div>
                             </div>
+                            <!-- Choose reset  password-->
                             <div class="col-sm-12 col-lg-12 col-xl-12" id = "ps">
                                 <!-- User to be updated-->
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
+                                         <!-- Select username  -->
                                         <select  id="usr" name="usr" class="select form form-control" aria-label="label for the select" style="overflow: hidden;">
                                             <option selected>--Please select username--</option>
                                             <?php
@@ -309,13 +314,14 @@ include 'config.php';
 </header>
 
 <script type="text/javascript">
-
+// cfg->config, ps->password
 $(document).ready(function() {
     document.getElementById ("show_cfg").addEventListener ("click", show_reset_cfg(), false);
     document.getElementById ("show_ps").addEventListener ("click", show_reset_ps(), false);
     $("#edit-usr").hide();
     $("#ps").hide();
     $("#cfg").hide();
+    // if comfirm password is same as password, show green, else show red
     $('#password, #confirm_password').on('keyup', function () {
         if ($('#password').val() == $('#confirm_password').val()) {
             $('#message').html('Matching').css('color', 'green');
@@ -323,6 +329,7 @@ $(document).ready(function() {
             $('#message').html('Not Matching').css('color', 'red');
         }
     });
+    // if comfirm password is same as password, show green, else show red (edit)
     $('#password2, #confirm_password2').on('keyup', function () {
         if ($('#password2').val() == $('#confirm_password2').val()) {
             $('#message2').html('Matching').css('color', 'green');

@@ -94,13 +94,6 @@ document.addEventListener("DOMContentLoaded", function() {
             popup.style.display = 'none';
         });
 });
-    
-    // console.log(getCookie("studyname"));
-    // console.log(getCookie("projectname"));
-    // // store selected study and project in the cookie
-    // var study = getCookie("studyname");
-    // var project = getCookie("projectname");
-    // var fromatdata = {'projectname':project,'studyname':study};
 </script>
 <?php
     $conn->close();
